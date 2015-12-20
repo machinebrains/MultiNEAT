@@ -52,6 +52,7 @@ try:
                                     ))
 
 except Exception as ex:
+    print("Current Exeption : ", ex)
     print('Cython is not present, trying boost::python (with boost::random and boost::serialization)')
 
     setup(name='MultiNEAT',
