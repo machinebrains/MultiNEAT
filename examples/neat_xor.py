@@ -34,9 +34,7 @@ def absErr(y,yhat):
     error = np.sum(diffs)
     return (4.0 - error)**2.0
     
-def evaluate(genome):
-    inputs = [[0.0,0.0,1.0],[0.0,1.0,1.0],[1.0,0.0,1.0],[1.0,1.0,1.0]]
-    outputs = [0.0,1.0,1.0,0.0]
+def evaluate(genome,inputs,outputs):
     yhat = evalGenome(genome, inputs)
     return absErr(outputs,yhat)
     
@@ -91,12 +89,12 @@ def getbest(i):
     fitness_list = []
     Reached_Best = 0
     bestInd = None
-    inputs = [[0.0,0.0,],[0.0,1.0],[1.0,0.0],[1.0,1.0]]
+    inputs = [[0.0,0.0],[0.0,1.0],[1.0,0.0],[1.0,1.0]]
     outputs = [0.0,1.0,1.0,0.0]
     
     for generation in range(1000):
         genome_list = NEAT.GetGenomeList(pop)
-        fitness_list = EvaluateGenomeList_Serial(genome_list, evaluate, display=False)
+        fitness_list = EvaluateGenomeList_Serial(genome_list, evaluate,inputs,outputs, display=False)
         
         best = max(fitness_list)
         
