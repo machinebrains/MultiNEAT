@@ -2,6 +2,9 @@ import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from _MultiNEAT import *
 
+import multiprocessing as mp
+
+
 # Get all genomes from the population
 def GetGenomeList(pop):
     genome_list = []
@@ -53,8 +56,7 @@ def EvaluateGenomeList_Serial(genome_list, evaluator, display=True):
 # Evaluates all genomes in parallel manner (many processes) and returns a
 # list of corresponding fitness values.
 # evaluator is a callable that is supposed to take Genome as argument and return a double
-def EvaluateGenomeList_Parallel(genome_list, evaluator, 
-                                cores=8, display=True, ipython_client=None):
+def EvaluateGenomeList_Parallel(genome_list, evaluator,cores=-1, display=False, ipython_client=None):
     ''' If ipython_client is None, will use concurrent.futures. 
     Pass an instance of Client() in order to use an IPython cluster '''
     fitnesses = []
