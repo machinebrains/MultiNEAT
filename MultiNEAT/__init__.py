@@ -32,13 +32,21 @@ except:
 # returns a list of corresponding fitness values.
 # evaluator is a callable that is supposed to take Genome as argument and
 # return a double
-def EvaluateGenomeList_Serial(genome_list, evaluator, display=True):
+def EvaluateGenomeList_Serial(genome_list, evaluator, inputs=None, outputs=None, display=True):
     fitnesses = []
     count = 0
     curtime = time.time()
 
     for g in genome_list:
-        f = evaluator(g)
+        f = None
+        if inputs == None and outputs == None:
+            f = evaluator(g)
+        elif inputs == None and outputs != None:
+            f = evaluator(g,outputs)
+        elif inputs != None and outputs == None:
+            f = evaluator(g,inputs)
+        else:
+            f = evaluator(g,inputs,outputs)
         fitnesses.append(f)
 
         if display:
