@@ -12,7 +12,7 @@ import MultiNEAT as NEAT
 from MultiNEAT import EvaluateGenomeList_Serial
 from MultiNEAT import GetGenomeList, ZipFitness
 
-from concurrent.futures import ProcessPoolExecutor, as_completed
+#from concurrent.futures import ProcessPoolExecutor, as_completed
 
 
 def evalGenome(genome, inputs):
@@ -41,7 +41,7 @@ def evaluate(genome,inputs,outputs):
     
 
 params = NEAT.Parameters()
-params.PopulationSize = 150
+params.PopulationSize = 5000
 params.DynamicCompatibility = True
 params.WeightDiffCoeff = 4.0
 params.CompatTreshold = 2.0
